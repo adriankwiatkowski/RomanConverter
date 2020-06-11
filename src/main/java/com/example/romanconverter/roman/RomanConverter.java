@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.romanconverter;
+package com.example.romanconverter.roman;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,16 +36,22 @@ public class RomanConverter {
                 }
             };
 
-    private static final int[]    ARABIC_NUMBERS = {
+    private static final int[] ARABIC_NUMBERS_DEC = {
             1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1
     };
-    private static final String[] ROMAN_NUMBERS  = {
+
+    private static final String[] ROMAN_NUMBERS_DEC = {
             "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"
     };
 
     public static int parseRoman(String roman) {
         roman = roman.trim();
         String romanCapitalized = roman.toUpperCase();
+
+        if (!RomanValidator.isRomanValid(roman)) {
+            System.out.println("Invalid roman literal.");
+            return 0;
+        }
 
         int sum = 0;
 
@@ -86,14 +92,14 @@ public class RomanConverter {
         StringBuilder sb        = new StringBuilder();
         int           arabicAbs = Math.abs(arabic);
 
-        for (int i = 0; i < ARABIC_NUMBERS.length; ++i) {
-            int times = arabicAbs / ARABIC_NUMBERS[i];
+        for (int i = 0; i < ARABIC_NUMBERS_DEC.length; ++i) {
+            int times = arabicAbs / ARABIC_NUMBERS_DEC[i];
 
             for (int j = 0; j < times; ++j) {
-                sb.append(ROMAN_NUMBERS[i]);
+                sb.append(ROMAN_NUMBERS_DEC[i]);
             }
 
-            arabicAbs -= times * ARABIC_NUMBERS[i];
+            arabicAbs -= times * ARABIC_NUMBERS_DEC[i];
         }
 
         if (arabic < 0) {
@@ -101,59 +107,5 @@ public class RomanConverter {
         }
 
         return sb.toString();
-
-        /*
-        while (arabicAbs > 0) {
-            String romanValue;
-            int    arabicValue;
-
-            if (arabicAbs >= 1000) {
-                romanValue = "M";
-                arabicValue = 1000;
-            } else if (arabicAbs >= 900) {
-                romanValue = "CM";
-                arabicValue = 900;
-            } else if (arabicAbs >= 500) {
-                romanValue = "D";
-                arabicValue = 500;
-            } else if (arabicAbs >= 400) {
-                romanValue = "CD";
-                arabicValue = 400;
-            } else if (arabicAbs >= 100) {
-                romanValue = "C";
-                arabicValue = 100;
-            } else if (arabicAbs >= 90) {
-                romanValue = "XC";
-                arabicValue = 90;
-            } else if (arabicAbs >= 50) {
-                romanValue = "L";
-                arabicValue = 50;
-            } else if (arabicAbs >= 40) {
-                romanValue = "XL";
-                arabicValue = 40;
-            } else if (arabicAbs >= 10) {
-                romanValue = "X";
-                arabicValue = 10;
-            } else if (arabicAbs >= 9) {
-                romanValue = "IX";
-                arabicValue = 9;
-            } else if (arabicAbs >= 5) {
-                romanValue = "V";
-                arabicValue = 5;
-            } else {
-                romanValue = "I";
-                arabicValue = 1;
-            }
-
-            sb.append(romanValue);
-            arabicAbs -= arabicValue;
-        }
-
-        if (arabic < 0) {
-            sb.insert(0, "-");
-        }
-
-        return sb.toString();
-         */
     }
 }

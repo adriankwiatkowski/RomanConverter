@@ -15,6 +15,8 @@
  */
 package com.example.romanconverter;
 
+import com.example.romanconverter.roman.RomanConverter;
+
 public class Main {
 
     public static void main(String[] args) {
