@@ -17,46 +17,46 @@ package com.example.romanconverter.roman;
 
 import org.junit.Test;
 
-import static com.example.romanconverter.roman.RomanValidator.isRomanValid;
+import static com.example.romanconverter.roman.RomanValidator.isRomanNumeral;
 import static org.junit.Assert.*;
 
 public class RomanValidatorTest {
 
     @Test
     public void validateRoman_isCorrect() {
-        assertTrue(isRomanValid("XXXIX"));
-        assertTrue(isRomanValid("CCXLVI"));
-        assertTrue(isRomanValid("DCCLXXXIX"));
-        assertTrue(isRomanValid("MMCDXXI"));
-        assertTrue(isRomanValid("CMXCIX"));
-        assertTrue(isRomanValid("MMMCMXCIX"));
+        assertTrue(isRomanNumeral("XXXIX"));
+        assertTrue(isRomanNumeral("CCXLVI"));
+        assertTrue(isRomanNumeral("DCCLXXXIX"));
+        assertTrue(isRomanNumeral("MMCDXXI"));
+        assertTrue(isRomanNumeral("CMXCIX"));
+        assertTrue(isRomanNumeral("MMMCMXCIX"));
 
-        assertTrue(isRomanValid("MMMCM"));
+        assertTrue(isRomanNumeral("MMMCM"));
     }
 
     @Test
     public void validateRoman_isIncorrect() {
-        assertFalse(isRomanValid("IIII"));
-        assertFalse(isRomanValid("VVVV"));
-        assertFalse(isRomanValid("XXXX"));
-        assertFalse(isRomanValid("LLLL"));
-        assertFalse(isRomanValid("CCCC"));
-        assertFalse(isRomanValid("DDDD"));
-        assertFalse(isRomanValid("MMMM"));
+        assertFalse(isRomanNumeral("IIII"));
+        assertFalse(isRomanNumeral("VVVV"));
+        assertFalse(isRomanNumeral("XXXX"));
+        assertFalse(isRomanNumeral("LLLL"));
+        assertFalse(isRomanNumeral("CCCC"));
+        assertFalse(isRomanNumeral("DDDD"));
+        assertFalse(isRomanNumeral("MMMM"));
 
-        assertFalse(isRomanValid("VL"));
-        assertFalse(isRomanValid("IM"));
-        assertFalse(isRomanValid("VV"));
-        assertFalse(isRomanValid("LLL"));
-        assertFalse(isRomanValid("DDD"));
+        assertFalse(isRomanNumeral("VL"));
+        assertFalse(isRomanNumeral("IM"));
+        assertFalse(isRomanNumeral("VV"));
+        assertFalse(isRomanNumeral("LLL"));
+        assertFalse(isRomanNumeral("DDD"));
 
-        assertFalse(isRomanValid("XIXIXIX"));
-        assertFalse(isRomanValid("IXI"));
-        assertFalse(isRomanValid("IXV"));
-        assertFalse(isRomanValid("IXX"));
+        assertFalse(isRomanNumeral("XIXIXIX"));
+        assertFalse(isRomanNumeral("IXI"));
+        assertFalse(isRomanNumeral("IXV"));
+        assertFalse(isRomanNumeral("IXX"));
 
-        assertFalse(isRomanValid("DCCCXXLX"));
+        assertFalse(isRomanNumeral("DCCCXXLX"));
 
-        assertFalse(isRomanValid("MMMM"));
+        assertFalse(isRomanNumeral(""));
     }
 }

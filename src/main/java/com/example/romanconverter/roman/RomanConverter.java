@@ -48,7 +48,7 @@ public class RomanConverter {
         roman = roman.trim();
         String romanCapitalized = roman.toUpperCase();
 
-        if (!RomanValidator.isRomanValid(roman)) {
+        if (!RomanValidator.isRomanNumeral(roman)) {
             System.out.println("Invalid roman literal.");
             return 0;
         }
@@ -82,11 +82,8 @@ public class RomanConverter {
     }
 
     public static String parseArabic(int arabic) {
-        if (arabic <= -4000) {
-            throw new IllegalArgumentException("Number must be grater than -4000");
-        }
-        if (arabic >= 4000) {
-            throw new IllegalArgumentException("Number must be lesser than 4000");
+        if (arabic <= -4000 || arabic >= 4000) {
+            throw new IllegalArgumentException("Number " + arabic + " out of bounds: {-3999; 3999}");
         }
 
         StringBuilder sb        = new StringBuilder();
@@ -101,6 +98,8 @@ public class RomanConverter {
 
             arabicAbs -= times * ARABIC_NUMBERS_DEC[i];
         }
+
+        assert RomanValidator.isRomanNumeral(sb.toString()) : "Generated invalid roman numeral!";
 
         if (arabic < 0) {
             sb.insert(0, "-");

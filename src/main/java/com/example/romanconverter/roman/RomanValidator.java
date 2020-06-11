@@ -15,14 +15,17 @@
  */
 package com.example.romanconverter.roman;
 
+import java.util.regex.Pattern;
+
 class RomanValidator {
 
     private RomanValidator() {
     }
 
-    private static final String ROMAN_REGEX = "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
+    private static final Pattern ROMAN = Pattern.compile(
+            "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$");
 
-    public static boolean isRomanValid(String roman) {
-        return roman.matches(ROMAN_REGEX);
+    public static boolean isRomanNumeral(String roman) {
+        return !roman.isEmpty() && ROMAN.matcher(roman).matches();
     }
 }
